@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Motorcycle Dashboard</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-light border-bottom border-body" data-bs-theme="light">
+<body class="bg-secondary text-white">  
+
+     
+    <nav class="navbar navbar-expand-lg" style="background-color: #F8C000; border-bottom: 2px solid #333333;">
         <div class="container-fluid">
-            <a class="navbar-brand px-5" href="/home">Portfolio</a>
+            <a class="navbar-brand text-black fw-bold px-5" href="/home">Portfolio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item dropdown px-5">
-                        <a class="nav-link dropdown-toggle" href="#" id="managementDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Management</a>
-                        <ul class="dropdown-menu" aria-labelledby="managementDropdown">
+                        <a class="nav-link dropdown-toggle text-black fw-bold" href="#" id="managementDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Management</a>
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/create">Create</a></li>
                             <li><a class="dropdown-item" href="/delete">Delete</a></li>
                             <li><a class="dropdown-item" href="/edit">Edit</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item px-5"><a class="nav-link" href="/enable">Enable 2FA</a></li>
-                    <li class="nav-item px-5"><a class="nav-link" href="/api/v1/">Log out</a></li>
+                    <li class="nav-item px-5"><a class="nav-link text-black fw-bold" href="/enable">Enable 2FA</a></li>
+                    <li class="nav-item px-5"><a class="nav-link text-black fw-bold" href="/api/v1/">Log out</a></li>
                     <li class="nav-item dropdown px-5">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Car Related</a>
-                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="nav-link dropdown-toggle text-black fw-bold" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Car Related</a>
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/cars">Cars</a></li>
                             <li><a class="dropdown-item" href="/csv-cars">Cars Graph</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown px-5">
-                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Motorcycle Related</a>
-                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <a class="nav-link dropdown-toggle text-black fw-bold" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Motorcycle Related</a>
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/motorcycle">Motorcycles</a></li>
                             <li><a class="dropdown-item" href="/csv-motorcycle">Motorcycles Graph</a></li>
                         </ul>
@@ -44,24 +47,18 @@
         </div>
     </nav>
 
+    
     <div class="container mt-4">
-        <h2 class="text-center">Motorcycle</h2>
-
-        <div class="row">
-            <!-- Iterate over the motorcycles array -->
+        <h2 class="text-center text-white">Motorcycle Collection</h2>
+        
+        <div class="row mt-4">
             <% motorcycle.forEach(bike => { %>
                 <div class="col-md-4 mb-4">
-                    <div class="card">
+                    <div class="card shadow-lg" style="background-color: #c4c1c1; border-radius: 1rem;">
                         <div class="card-body">
-                            <h5 class="card-title">
-                                <%= bike.make %> <%= bike.model %> (<%= bike.year %>)
-                            </h5>
-                            <p class="card-text">
-                                <strong>Engine:</strong> <%= bike.engine %>
-                            </p>
-                            <p class="card-text">
-                                <strong>Power:</strong> <%= bike.power %>
-                            </p>
+                            <h5 class="card-title text-black"><%= bike.make %> <%= bike.model %> (<%= bike.year %>)</h5>
+                            <p class="card-text text-black"><strong>Engine:</strong> <%= bike.engine %></p>
+                            <p class="card-text text-black"><strong>Power:</strong> <%= bike.power %></p>
                             <a href="https://www.kawasaki.com" class="btn btn-primary" target="_blank">Learn More</a>
                         </div>
                     </div>
@@ -69,7 +66,13 @@
             <% }) %>
         </div>
     </div>
+    
+    
+    <footer class="bg-light text-center text-black py-3 mt-4 border-top">
+        <p class="mb-0">© 2024 Motorcycle Dashboard</p>
+    </footer>
 
+     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

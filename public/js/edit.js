@@ -1,4 +1,4 @@
-// Load all portfolio items for selection
+ 
 async function loadPortfolioItems() {
     try {
         const response = await axios.get('/api/v2/');
@@ -17,7 +17,7 @@ async function loadPortfolioItems() {
     }
 }
 
-// Load selected item data to edit
+ 
 async function loadItemData(itemId) {
 try {
     const response = await axios.get(`/api/v2/${itemId}`);
@@ -26,18 +26,18 @@ try {
     document.getElementById('title').value = item.title;
     document.getElementById('description').value = item.description;
 
-    // Clear previous image previews
+     
     const imagePreview = document.getElementById('imagePreview');
     imagePreview.innerHTML = '';
     
-    // Show images with delete option
+    
     item.images.forEach((image, index) => {
         const img = document.createElement('img');
         img.src = `${image}`;
         img.classList.add('img-thumbnail', 'me-2');
         img.style.width = '100px';
     
-        // Create delete button for each image
+         
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'Delete';
         deleteBtn.classList.add('btn', 'btn-danger', 'btn-sm', 'mt-2');
@@ -55,24 +55,24 @@ try {
     }
  }  
 
- let deletedImages = []; // Track deleted image paths
+ let deletedImages = [];  
 
  function deleteImage(index, imagePath) {
-     // Remove the image from the preview
+      
      const imagePreview = document.getElementById('imagePreview');
      imagePreview.children[index].remove();
  
-     // Add the image path to the deletedImages array
+      
      deletedImages.push(imagePath);
  }
 
-// Event listener for selecting an item to edit
+
 document.getElementById('itemSelect').addEventListener('change', function () {
     const itemId = this.value;
     loadItemData(itemId);
 });
 
-// Event listener for form submission
+ 
 document.getElementById('editPortfolioForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -88,17 +88,17 @@ document.getElementById('editPortfolioForm').addEventListener('submit', async fu
     formData.append('title', title);
     formData.append('description', description);
 
-    // Append images
+     
     for (let i = 0; i < images.length; i++) {
         formData.append('images', images[i]);
     }
 
-    // Append deleted images paths
+     
     for(let i = 0; i < deletedImages.length; i++){
         formData.append('deletedImages', deletedImages[i]);
     }
 
-    // After submitting, reset deletedImages
+     
     deletedImages = [];
 
     try {
@@ -109,12 +109,12 @@ document.getElementById('editPortfolioForm').addEventListener('submit', async fu
         });
 
         messageContainer.innerHTML = `<div class="alert alert-success">${response.data.message}</div>`;
-        loadItemData(itemId); // Reload form with updated data
+        loadItemData(itemId);  
     } catch (error) {
         console.error(error);
         messageContainer.innerHTML = '<div class="alert alert-danger">Failed to update portfolio item.</div>';
     }
 });
 
-// Initial load of portfolio items
+ 
 loadPortfolioItems();

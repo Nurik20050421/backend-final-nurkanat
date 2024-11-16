@@ -8,7 +8,7 @@ $(document).ready(() => {
                 const images = portfolio.images;
                 const activeClass = 'active';
 
-                // Generate inner carousel items
+                
                 let carouselItems = '';
                 images.forEach((image, i) => {
                     carouselItems += `
@@ -27,7 +27,7 @@ $(document).ready(() => {
                     `;
                 });
 
-                // Generate carousel indicators
+                
                 let carouselIndicators = '';
                 images.forEach((_, i) => {
                     carouselIndicators += `
@@ -36,7 +36,7 @@ $(document).ready(() => {
                     `;
                 });
 
-                // Add carousel HTML to portfolio grid
+                
                 portfolioGrid.append(`
                     <div class="col-md-6 portfolio-item">
                         <div id="carousel${index}" class="carousel slide" data-bs-ride="carousel">

@@ -3,17 +3,17 @@ const path = require('path');
 const fs = require('fs');
 const User = require('../models/user');
 
-// Create Portfolio Item 
+ 
 exports.createItem = async (req, res) => {
   const { title, description } = req.body;
-  const images = req.files.map(file => path.join('images', file.filename)); // Save image paths
+  const images = req.files.map(file => path.join('images', file.filename)); 
 
   try {
       const newItem = new Item({
           title,
           description,
           images,
-          userId: req.session.user.userId // Assign the userId from session
+          userId: req.session.user.userId 
       });
 
       await newItem.save();
@@ -24,15 +24,14 @@ exports.createItem = async (req, res) => {
   }
 };
 
-// Get all Portfolio Items
 exports.getItems = async (req, res) => {
   try {
-    // Fetch all portfolio items from the database
+   
     const items = await Item.find();
 
-    // Fetch user details for each portfolio item by userId
+   
     const itemsWithUser = await Promise.all(items.map(async (item) => {
-      const user = await User.findById(item.userId); // Use findById to get user by userId
+      const user = await User.findById(item.userId); 
 
       return {
         ...item.toObject(),
@@ -44,7 +43,6 @@ exports.getItems = async (req, res) => {
       
     }));
 
-    // Send the modified portfolio items with user information
     res.json(itemsWithUser);
   } catch (error) {
     console.error('Error fetching portfolio items:', error);
@@ -53,7 +51,7 @@ exports.getItems = async (req, res) => {
 };
 
 
-// Get portfolio by id
+
 exports.getByIdItem = async (req, res) => {
   try {
     const itemId = req.params.id; 
@@ -79,7 +77,7 @@ exports.updateItem = async (req, res) => {
     const allImages = [...currentImages, ...newImages];
 
     const deletedImagesArray = Array.isArray(deletedImages) ? deletedImages : [deletedImages];
-    // Handle image deletions if deletedImages exists and is not empty
+    
     if (deletedImagesArray && deletedImagesArray.length > 0) {
       deletedImagesArray.forEach((imagePath) => {
         if (imagePath && imagePath !== 'null' && imagePath !== 'undefined') { 
@@ -91,7 +89,7 @@ exports.updateItem = async (req, res) => {
               console.log('Deleted image:', imagePath);
             }
           });
-          // Remove the deleted image from the allImages array
+      
           const imageIndex = allImages.indexOf(imagePath);
           if (imageIndex > -1) {
             allImages.splice(imageIndex, 1); 
@@ -102,7 +100,6 @@ exports.updateItem = async (req, res) => {
       });
     }
 
-    // Update the portfolio item with the new data
     const updatedItem = await Item.findByIdAndUpdate(
       req.params.id,
       { title, description, images: allImages, updatedAt: Date.now() },
@@ -121,16 +118,16 @@ exports.updateItem = async (req, res) => {
 };
 
 
-// Delete Portfolio Item (Admin only)
+
 exports.deleteItem = async (req, res) => {
   try {
-    // Fetch the portfolio item to get associated images
+  
     const deletedItem = await Item.findById(req.params.id);
     if (!deletedItem) {
       return res.status(404).json({ error: 'Item not found' });
     }
 
-    // Delete images from the 'images' folder
+  
     deletedItem.images.forEach((imagePath) => {
       const imageFilePath = path.join(__dirname, '..', imagePath);
       fs.unlink(imageFilePath, (err) => {
@@ -142,10 +139,8 @@ exports.deleteItem = async (req, res) => {
       });
     });
 
-    // Now delete the portfolio item from the database
     await Item.findByIdAndDelete(req.params.id);
 
-    // Respond with a success message
     res.json({ message: 'Portfolio item deleted successfully' });
   } catch (error) {
     console.error('Error deleting portfolio item:', error);

@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    // Fetch portfolio items to populate the dropdown
+   
     axios.get('/api/v2/')
         .then(response => {
             const portfolioItems = response.data;
@@ -14,7 +14,7 @@ $(document).ready(() => {
             $('#message').html('<div class="alert alert-danger">Failed to load portfolio items.</div>');
         });
 
-    // Handle delete form submission
+     
     $('#deleteForm').submit(function(event) {
         event.preventDefault();
 
@@ -27,7 +27,7 @@ $(document).ready(() => {
         axios.delete(`/api/v2/${selectedItemId}`)
             .then(response => {
                 $('#message').html(`<div class="alert alert-success">${response.data.message}</div>`);
-                $('#portfolioSelect').find(`option[value="${selectedItemId}"]`).remove(); // Remove deleted item from dropdown
+                $('#portfolioSelect').find(`option[value="${selectedItemId}"]`).remove();  
             })
             .catch(error => {
                 console.error('Error deleting portfolio item:', error);

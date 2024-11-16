@@ -11,7 +11,7 @@ loginForm.addEventListener('submit', function(event) {
 
     axios.post('/api/v1/sign', formData)
         .then(response => {
-            // Check if 2FA is required
+             
             if (response.data.isEnabled) {
                 window.location.href = `/verify2fa?username=${formData.username}`;
             } else {

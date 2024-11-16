@@ -1,12 +1,12 @@
 document.getElementById('createPortfolioForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Get form values
+     
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const images = document.getElementById('images').files;
 
-    // Clear previous messages
+     
     const messageContainer = document.getElementById('message');
     messageContainer.innerHTML = '';
 
@@ -15,12 +15,12 @@ document.getElementById('createPortfolioForm').addEventListener('submit', async 
         return;
     }
 
-    // Create FormData to send as multipart/form-data
+    
     const formData = new FormData();
     formData.append('title', title);
     formData.append('description', description);
     
-    // Append images to FormData
+     
     for (let i = 0; i < images.length; i++) {
         formData.append('images', images[i]);
     }
@@ -32,12 +32,12 @@ document.getElementById('createPortfolioForm').addEventListener('submit', async 
             }
         });
 
-        // Show success message
+        
         messageContainer.innerHTML = `<div class="alert alert-success">${response.data.message}</div>`;
-        document.getElementById('createPortfolioForm').reset(); // Optionally reset form fields
+        document.getElementById('createPortfolioForm').reset();  
     } catch (error) {
         console.error(error);
-        // Show error message
+        
         messageContainer.innerHTML = '<div class="alert alert-danger">Failed to create portfolio item</div>';
     }
 });
