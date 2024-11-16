@@ -71,17 +71,13 @@ exports.getByIdItem = async (req, res) => {
 exports.updateItem = async (req, res) => {
   const { title, description, deletedImages } = req.body;
   try {
-    // Retrieve the current images from the database (if available)
     const item = await Item.findById(req.params.id);
     const currentImages = item ? item.images : [];
 
-    // Initialize new images from uploaded files, if available
     const newImages = req.files ? req.files.map(file => path.join('images', file.filename)) : [];
 
-    // Combine the current images with the newly uploaded images
     const allImages = [...currentImages, ...newImages];
 
-    // Initialize images if not passed in the request
     const deletedImagesArray = Array.isArray(deletedImages) ? deletedImages : [deletedImages];
     // Handle image deletions if deletedImages exists and is not empty
     if (deletedImagesArray && deletedImagesArray.length > 0) {
