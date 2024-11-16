@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/carousel.css">
+</head>
+<body class="bg-black text-white">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #000000; border-bottom: 2px solid #F8C000;" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand px-5" href="/home" style="color: #F8C000;">Portfolio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: #F8C000;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown px-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="managementDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #F8C000;">Management</a>
+                        <ul class="dropdown-menu" aria-labelledby="managementDropdown">
+                            <li><a class="dropdown-item" href="/create" style="color: #F8C000;">Create</a></li>
+                            <li><a class="dropdown-item" href="/delete" style="color: #F8C000;">Delete</a></li>
+                            <li><a class="dropdown-item" href="/edit" style="color: #F8C000;">Edit</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item px-5"><a class="nav-link" href="/enable" style="color: #F8C000;">Enable 2FA</a></li>
+                    <li class="nav-item px-5"><a class="nav-link" href="/api/v1/" style="color: #F8C000;">Log out</a></li>
+                    <li class="nav-item dropdown px-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #F8C000;">Car Related</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="/cars" style="color: #F8C000;">Cars</a></li>
+                            <li><a class="dropdown-item" href="/csv-cars" style="color: #F8C000;">Cars Graph</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown px-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #F8C000;">Motorcycle Related</a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="/motorcycle" style="color: #F8C000;">Motorcycles</a></li>
+                            <li><a class="dropdown-item" href="/csv-motorcycle" style="color: #F8C000;">Motorcycles Graph</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Carousel Grid -->
+    <div class="container my-4">
+        <div class="row" id="portfolioGrid">
+            <!-- Dynamic portfolio carousels will be added here -->
+        </div>
+    </div>
+
+    <!-- Axios and Script to Fetch Portfolio Data -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/home.js"></script>
+    
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

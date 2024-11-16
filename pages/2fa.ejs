@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-black text-white d-flex align-items-center justify-content-center vh-100">
+    <div class="container">
+        <!-- Error Message -->
+        <div id="error-message" class="alert alert-danger text-center" style="display: none;"></div>
+        
+        <!-- 2FA Setup Card -->
+        <div id="setup-content" class="card shadow-sm mx-auto" style="max-width: 400px; background-color: #000000;">
+            <div class="card-body text-center">
+                <h2 class="card-title mb-3" style="color: #F8C000;">Setup 2FA for <%= username %></h2>
+                <p class="text-muted">Scan the QR code below with your 2FA app (e.g., Google Authenticator).</p>
+
+                <!-- QR Code Image -->
+                <div class="mb-4">
+                    <img id="qrCode" alt="QR Code" width="200" class="d-none border rounded p-2 bg-light" />
+                </div>
+
+                <!-- OTP Verification Form -->
+                <form id="verifyForm">
+                    <div class="mb-3">
+                        <label for="otp" class="form-label" style="color: white;">Enter OTP</label>
+                        <input type="text" id="otp" name="token" class="form-control" maxlength="6" style="background-color: #333333; color: white; border: 1px solid #F8C000;" required>
+                    </div>
+                    <button type="submit" class="btn" style="background-color: #F8C000; color: black; width: 100%;">Verify OTP</button>
+                </form>
+                
+                <a class="d-block mt-3 text-muted" onclick="handleLater(event)" style="color: #F8C000;">Later</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const username = "<%= username %>";
+    </script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/setup-2fa.js"></script>
+</body>
+</html>
